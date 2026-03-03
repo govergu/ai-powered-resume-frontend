@@ -9,7 +9,7 @@ const routes = [
   {
     label: "Dashboard",
     icon: LayoutDashboard,
-    href: "/",
+    href: "/dashboard",
   },
   {
     label: "Upload Resume",
@@ -25,7 +25,7 @@ const routes = [
     label: "Settings",
     icon: Settings,
     href: "/settings",
-  }
+  },
 ];
 
 export function AppSidebar() {
@@ -37,9 +37,11 @@ export function AppSidebar() {
         <div className="h-8 w-8 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
           <FileText className="text-primary-foreground h-5 w-5" />
         </div>
-        <h1 className="font-bold text-lg tracking-tight">Resume<span className="text-primary opacity-80">AI</span></h1>
+        <h1 className="font-bold text-lg tracking-tight">
+          Resume<span className="text-primary opacity-80">AI</span>
+        </h1>
       </div>
-      
+
       <div className="flex flex-col gap-2 flex-grow">
         {routes.map((route) => (
           <Link
@@ -49,15 +51,22 @@ export function AppSidebar() {
               "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 text-sm font-medium",
               pathname === route.href
                 ? "bg-primary/10 text-primary shadow-sm"
-                : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                : "text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
           >
-            <route.icon className={cn("h-4 w-4", pathname === route.href ? "text-primary" : "text-muted-foreground")} />
+            <route.icon
+              className={cn(
+                "h-4 w-4",
+                pathname === route.href
+                  ? "text-primary"
+                  : "text-muted-foreground",
+              )}
+            />
             {route.label}
           </Link>
         ))}
       </div>
-      
+
       <div className="mt-auto px-2 pb-4">
         <div className="p-4 rounded-xl bg-muted/50 border border-border/50 text-xs text-muted-foreground">
           <p className="font-semibold text-foreground mb-1">Pro Plan Active</p>
