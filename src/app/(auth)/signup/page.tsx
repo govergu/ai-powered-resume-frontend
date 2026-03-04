@@ -3,13 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { apiFetch } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const router = useRouter();
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -18,7 +19,7 @@ export default function SignupPage() {
         method: "POST",
         body: JSON.stringify({ name, email, password }),
       });
-      window.location.href = "/dashboard"; // Redirect on success
+      router.push("/dashboard"); // Redirect on success
     } catch (err: any) {
       setError(err.message);
     }
